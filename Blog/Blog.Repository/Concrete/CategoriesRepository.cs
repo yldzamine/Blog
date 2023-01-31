@@ -10,18 +10,17 @@ namespace Blog.Repository.Concrete
 {
     public class CategoriesRepository : ICategoriesRepository
     {
-        //private readonly IDBRepository _dBRepository;
-        private readonly DBEFContext _dbContext;    
+        private readonly IDBRepository _dBRepository;
 
-        public CategoriesRepository(DBEFContext dBEFContext)
+        public CategoriesRepository(IDBRepository dBRepository)
         {
-            
-            _dbContext = dBEFContext;   
+            _dBRepository = dBRepository;
         }
 
         public async Task<List<Category>> GetCategoriesAsync()
         {
-            return await _dbContext.Category.ToListAsync();
+            string sql = "Select * from Category";
+            return await _dBRepository.GetAllAsync<Category>(sql);
         }
     }
 }
