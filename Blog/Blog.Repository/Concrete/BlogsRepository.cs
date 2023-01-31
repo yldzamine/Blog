@@ -49,13 +49,12 @@ namespace Blog.Repository.Concrete
 
         public  async Task<Blogs> InsertBlogsAsync(Blogs blogs)
         {
-            string sql = @"Insert Into Blogs(Title, Description, Url, Category)
-                          Values(@Title, @Description, @Url, @Category) Select SCOPE_IDENTITY()";
+            string sql = @"Insert Into Blogs(Title, Description, Category)
+                          Values(@Title, @Description, @Category) Select SCOPE_IDENTITY()";
 
             DynamicParameters dynamicParameters = new DynamicParameters();
             dynamicParameters.Add("Title ", blogs.Title, DbType.String);
-            dynamicParameters.Add("Description", blogs.Description, DbType.String); 
-            dynamicParameters.Add("Url", blogs.Url, DbType.String);
+            dynamicParameters.Add("Description", blogs.Description, DbType.String);             
             dynamicParameters.Add("Category", blogs.Category, DbType.Int32);
             int id = await _dbRrepository.InsertAsync<int>(sql, dynamicParameters);
             blogs.Id = id;
@@ -67,16 +66,14 @@ namespace Blog.Repository.Concrete
         {
             string sql = @"Update t SET 
                                   t.Title = @Title,
-                                  t.Description = @Description,
-                                  t.Url = @Url
+                                  t.Description = @Description,                                 
                                   t.Category = Category
                           From Blogs t 
                           Where t.Id = @Id";
             DynamicParameters dynamicParameters = new DynamicParameters();
             dynamicParameters.Add("Id", blogs.Id, DbType.Int32);
             dynamicParameters.Add("Title", blogs.Title, DbType.String);
-            dynamicParameters.Add("Description", blogs.Description , DbType.String);
-            dynamicParameters.Add("Url", blogs.Url, DbType.String);
+            dynamicParameters.Add("Description", blogs.Description , DbType.String);           
             dynamicParameters.Add("Category", blogs.Category , DbType.Int32);
 
             await _dbRrepository.UpdateAsync(sql, dynamicParameters);

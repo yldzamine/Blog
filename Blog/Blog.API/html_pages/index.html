@@ -1,0 +1,215 @@
+﻿
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Haberler</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/css/bootstrap.min.css">
+
+</head>
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="form-group">
+                    <label>Filtre</label>
+                    <input type="text" class="form-control" id="txtSearch">
+                </div>
+
+                <button class="btn btn-info" onclick="GetData()">Listele</button>
+
+                <button class="btn btn-success" data-toggle="modal" data-target="#blogsModal">Ekle</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <table id="tblList" class="table">
+                    <thead>
+                        <tr>
+                            <th>Blog Id</th>
+                            <th>Blog Başlık</th>
+                            <th>Blog Açıklama</th>                            
+                            <th>Ait Olduğu Kategori</th>
+                            <th>İşlem</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="blogsModal" tabindex="-1" role="dialog" aria-labelledby="blogsModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="blogsModalLabel">Haber Detay</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="ClearData()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="txtRecordId" value="">
+
+                    <div class="form-group">
+                        <label>Başlık</label>
+                        <input type="text" class="form-control" id="txtTitle">
+                    </div>
+                    <div class="form-group">
+                        <label>Açıklama</label>
+                        <input type="text" class="form-control" id="txtDescription">
+                    </div>
+                    <div class="form-group">
+                        <label>Ait Olduğu Kategori</label>
+                        <input type="text" class="form-control" id="txtCategory">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="ClearData()">Close</button>
+                    <button id="btnSave" type="button" class="btn btn-primary" onclick="SaveData()">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        var header = null;
+        
+        function GetData() {
+            var search = $('#txtSearch').val();
+
+            $.ajax({
+                url: "http://localhost:19593/api/blogs?search=" + search,
+                dataType: "json",
+                headers: header,
+                contentType: "application/json; charset=utf-8",
+                type: "GET",
+                cache: false,
+                success: function (data) {
+                    FillDataToTable(data);
+                },
+                error: function (data, textStatus) {
+                    console.log(textStatus)
+                }
+            });
+        }
+
+        function FillDataToTable(data) {
+            $("#tblList tbody").html('');
+
+            $.each(data, function (index, item) {
+                $("#tblList tbody").append("<tr>" +
+                    "<td>" + item.id + "</td>" +
+                    "<td>" + item.title + "</td>" +
+                    "<td>" + item.description + "</td>" +
+                    "<td>" + item.category + "</td>" +
+                    "<td>" +
+                    "<button class='btn btn-danger btn-sm' onclick='DeleteData(" + item.id + ")'>Sil</button> " +
+                    "<button class='btn btn-info btn-sm' onclick='UpdateData(" + item.id + ")'>Güncelle</button>" +
+                    "</td>" +
+                    "</tr>");
+            });
+        }
+
+        function DeleteData(id) {
+            $.ajax({
+                url: "http://localhost:19593/api/blogs/" + id,
+                dataType: "json",
+                headers: header,
+                contentType: "application/json; charset=utf-8",
+                type: "DELETE",
+                cache: false,
+                success: function (data) {
+                    GetData();
+                },
+                error: function (data, textStatus) {
+                    console.log(textStatus)
+                }
+            });
+        }
+
+        function InsertData() {
+            ClearData();
+        }
+        function UpdateData(id) {
+            ClearData();
+            $.ajax({
+                url: "http://localhost:19593/api/blogs/" + id,
+                dataType: "json",
+                headers: header,
+                contentType: "application/json; charset=utf-8",
+                type: "GET",
+                cache: false,
+                success: function (data) {
+                    $('#txtTitle').val(data.title);
+                    $('#txtDescription').val(data.description);
+                    $('#txtCategory').val(data.category);
+                    $('#txtRecordId').val(data.id);
+                    $('#blogsModal').modal('show');
+                },
+                error: function (data, textStatus) {
+                    console.log(textStatus)
+                }
+            });
+        }
+        function SaveData() {
+            var url = "http://localhost:19593/api/blogs/";
+            var type = "POST";
+
+            var id = $('#txtRecordId').val();
+            if (id != null && id != '') {
+                url += id
+                type = "PUT";
+            }
+
+            var model = {};
+            model.title = $('#txtTitle').val();
+            model.description = $('#txtDescription').val();
+            model.url = $('#txtCategory').val();
+
+            $.ajax({
+                url: url,
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                type: type,
+                headers: header,
+                cache: false,
+                data: JSON.stringify(model),
+                success: function (data) {
+                },
+                error: function (data, textStatus) {
+                    console.log(textStatus)
+                },
+                complete: function () {
+                    GetData();
+                    ClearData();
+                    HideModal();
+                }
+            });
+        }
+        function HideModal() {
+            $('#blogsModal').modal('hide');
+        }
+        function ClearData() {
+            $('#txtTitle').val("");
+            $('#txtDescription').val("");
+            $('#txtCategory').val("");
+            $('#txtRecordId').val("");
+        }
+        Login();
+    </script>
+</body>
+</html>

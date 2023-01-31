@@ -1,8 +1,6 @@
 ﻿using Blog.Entity.Dtos;
-
 using Blog.Repository.Abstract;
 using Blogs.Service.Abstract;
-using Microsoft.EntityFrameworkCore;
 
 namespace Blogs.Service.Concrete
 {
@@ -37,7 +35,6 @@ namespace Blogs.Service.Concrete
                 Id = model.Id,
                 Title = model.Title,
                 Description = model.Description,
-                Url = model.Url,    
                 Category = model.Category
             }).ToList();
         }
@@ -51,7 +48,6 @@ namespace Blogs.Service.Concrete
                 Id = model.Id,
                 Title = model.Title,
                 Description = model.Description,
-                Url = model.Url,
                 Category = model.Category
             };
         }
@@ -66,7 +62,6 @@ namespace Blogs.Service.Concrete
 
                 Title = blogsDto.Title,
                 Description = blogsDto.Description,
-                Url = blogsDto.Url,
                 Category = blogsDto.Category
             });
 
@@ -78,7 +73,6 @@ namespace Blogs.Service.Concrete
                 Id = model.Id,
                 Title = model.Title,
                 Description = model.Description,
-                Url = model.Url,
                 Category = model.Category
             };
         }
@@ -90,7 +84,6 @@ namespace Blogs.Service.Concrete
                 Id = id,
                 Title = blogsDto.Title,
                 Description= blogsDto.Description,
-                Url= blogsDto.Url,
                 Category= blogsDto.Category
             });
 

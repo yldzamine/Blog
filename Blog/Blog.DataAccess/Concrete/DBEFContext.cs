@@ -19,8 +19,8 @@ namespace Blog.DataAccess.Concrete
             optionsBuilder.UseSqlServer(_connectionStrings.DbConnection);
         }
 
-        public DbSet<Blogs> Blogs { get; set; }
-        public DbSet<Category> Categories { get; set; }
+        public DbSet<Blogs>? Blogs { get; set; }
+        public DbSet<Category>? Categories { get; set; }
 
     }
 }

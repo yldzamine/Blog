@@ -1,0 +1,17 @@
+C:\Users\kurul_z8nf6ew\Desktop\Projects\Blog\Blog\Blog.Repository\bin\Debug\net6.0\Blog.Repository.deps.json
+C:\Users\kurul_z8nf6ew\Desktop\Projects\Blog\Blog\Blog.Repository\bin\Debug\net6.0\Blog.Repository.dll
+C:\Users\kurul_z8nf6ew\Desktop\Projects\Blog\Blog\Blog.Repository\bin\Debug\net6.0\Blog.Repository.pdb
+C:\Users\kurul_z8nf6ew\Desktop\Projects\Blog\Blog\Blog.Repository\bin\Debug\net6.0\Blog.DataAccess.dll
+C:\Users\kurul_z8nf6ew\Desktop\Projects\Blog\Blog\Blog.Repository\bin\Debug\net6.0\Blog.Entity.dll
+C:\Users\kurul_z8nf6ew\Desktop\Projects\Blog\Blog\Blog.Repository\bin\Debug\net6.0\Blog.DataAccess.pdb
+C:\Users\kurul_z8nf6ew\Desktop\Projects\Blog\Blog\Blog.Repository\bin\Debug\net6.0\Blog.Entity.pdb
+C:\Users\kurul_z8nf6ew\Desktop\Projects\Blog\Blog\Blog.Repository\obj\Debug\net6.0\Blog.Repository.csproj.AssemblyReference.cache
+C:\Users\kurul_z8nf6ew\Desktop\Projects\Blog\Blog\Blog.Repository\obj\Debug\net6.0\Blog.Repository.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\kurul_z8nf6ew\Desktop\Projects\Blog\Blog\Blog.Repository\obj\Debug\net6.0\Blog.Repository.AssemblyInfoInputs.cache
+C:\Users\kurul_z8nf6ew\Desktop\Projects\Blog\Blog\Blog.Repository\obj\Debug\net6.0\Blog.Repository.AssemblyInfo.cs
+C:\Users\kurul_z8nf6ew\Desktop\Projects\Blog\Blog\Blog.Repository\obj\Debug\net6.0\Blog.Repository.csproj.CoreCompileInputs.cache
+C:\Users\kurul_z8nf6ew\Desktop\Projects\Blog\Blog\Blog.Repository\obj\Debug\net6.0\Blog.Repository.csproj.CopyComplete
+C:\Users\kurul_z8nf6ew\Desktop\Projects\Blog\Blog\Blog.Repository\obj\Debug\net6.0\Blog.Repository.dll
+C:\Users\kurul_z8nf6ew\Desktop\Projects\Blog\Blog\Blog.Repository\obj\Debug\net6.0\refint\Blog.Repository.dll
+C:\Users\kurul_z8nf6ew\Desktop\Projects\Blog\Blog\Blog.Repository\obj\Debug\net6.0\Blog.Repository.pdb
+C:\Users\kurul_z8nf6ew\Desktop\Projects\Blog\Blog\Blog.Repository\obj\Debug\net6.0\ref\Blog.Repository.dll
