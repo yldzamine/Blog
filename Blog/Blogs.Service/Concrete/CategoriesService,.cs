@@ -13,7 +13,7 @@ namespace Blogs.Service.Concrete
             _categoriesRepository = categoriesRepository;
         }   
 
-        public async Task<List<CategoryDto>> GetNewsAsync()
+        public async Task<List<CategoryDto>> GetCategoriesAsync()
         {
            var modelList = await _categoriesRepository.GetCategoriesAsync();    
 

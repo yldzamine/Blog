@@ -11,11 +11,12 @@ namespace Blog.API.Controllers
     public class BlogsController : ControllerBase
     {
         private readonly IBlogsService _blogService;
-        //private readonly ICategoriesService _categoriesService;
+        private readonly ICategoriesService _categoriesService;
 
-        public BlogsController(IBlogsService blogService)
+        public BlogsController(IBlogsService blogService, ICategoriesService categoriesService)
         {
             _blogService = blogService;
+            _categoriesService = categoriesService; 
         }
 
 
@@ -115,5 +116,7 @@ namespace Blog.API.Controllers
 
             return Ok();
         }
+
+     
     }
 }

@@ -21,7 +21,7 @@ namespace Blog.DataAccess.Concrete
         }
 
         public DbSet<Blogs>? Blogs { get; set; }
-        public DbSet<Category>? Categories { get; set; }
+        public DbSet<Category>? Category { get; set; }
 
     }
 }
