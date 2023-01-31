@@ -1,10 +1,11 @@
 C:\Users\kurul_z8nf6ew\Desktop\Projects\Blog\Blog\Blog.API\bin\Debug\net6.0\appsettings.Development.json
-C:\Users\kurul_z8nf6ew\Desktop\Projects\Blog\Blog\Blog.API\bin\Debug\net6.0\appsettings.json
 C:\Users\kurul_z8nf6ew\Desktop\Projects\Blog\Blog\Blog.API\bin\Debug\net6.0\Blog.API.exe
+C:\Users\kurul_z8nf6ew\Desktop\Projects\Blog\Blog\Blog.API\bin\Debug\net6.0\appsettings.json
 C:\Users\kurul_z8nf6ew\Desktop\Projects\Blog\Blog\Blog.API\bin\Debug\net6.0\Blog.API.deps.json
 C:\Users\kurul_z8nf6ew\Desktop\Projects\Blog\Blog\Blog.API\bin\Debug\net6.0\Blog.API.runtimeconfig.json
 C:\Users\kurul_z8nf6ew\Desktop\Projects\Blog\Blog\Blog.API\bin\Debug\net6.0\Blog.API.dll
 C:\Users\kurul_z8nf6ew\Desktop\Projects\Blog\Blog\Blog.API\bin\Debug\net6.0\Blog.API.pdb
+C:\Users\kurul_z8nf6ew\Desktop\Projects\Blog\Blog\Blog.API\bin\Debug\net6.0\Blog.API.xml
 C:\Users\kurul_z8nf6ew\Desktop\Projects\Blog\Blog\Blog.API\bin\Debug\net6.0\Dapper.dll
 C:\Users\kurul_z8nf6ew\Desktop\Projects\Blog\Blog\Blog.API\bin\Debug\net6.0\Microsoft.AspNetCore.Server.Kestrel.Https.dll
 C:\Users\kurul_z8nf6ew\Desktop\Projects\Blog\Blog\Blog.API\bin\Debug\net6.0\Microsoft.AspNetCore.Server.Kestrel.Transport.Abstractions.dll
@@ -72,6 +73,7 @@ C:\Users\kurul_z8nf6ew\Desktop\Projects\Blog\Blog\Blog.API\obj\Debug\net6.0\scop
 C:\Users\kurul_z8nf6ew\Desktop\Projects\Blog\Blog\Blog.API\obj\Debug\net6.0\Blog.API.csproj.CopyComplete
 C:\Users\kurul_z8nf6ew\Desktop\Projects\Blog\Blog\Blog.API\obj\Debug\net6.0\Blog.API.dll
 C:\Users\kurul_z8nf6ew\Desktop\Projects\Blog\Blog\Blog.API\obj\Debug\net6.0\refint\Blog.API.dll
+C:\Users\kurul_z8nf6ew\Desktop\Projects\Blog\Blog\Blog.API\obj\Debug\net6.0\Blog.API.xml
 C:\Users\kurul_z8nf6ew\Desktop\Projects\Blog\Blog\Blog.API\obj\Debug\net6.0\Blog.API.pdb
 C:\Users\kurul_z8nf6ew\Desktop\Projects\Blog\Blog\Blog.API\obj\Debug\net6.0\Blog.API.genruntimeconfig.cache
 C:\Users\kurul_z8nf6ew\Desktop\Projects\Blog\Blog\Blog.API\obj\Debug\net6.0\ref\Blog.API.dll

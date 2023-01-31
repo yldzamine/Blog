@@ -1,4 +1,5 @@
 using Blog.Entity.Dtos;
+using Blogs.Service.Abstract;
 using Blogs.Service.Concrete;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,26 +10,27 @@ namespace Blog.API.Controllers
     [Route("api/[controller]")]
     public class BlogsController : ControllerBase
     {
-        private readonly BlogService _blogService;
-        private readonly CategoriesService _categoriesService;
+        private readonly IBlogsService _blogService;
+        //private readonly ICategoriesService _categoriesService;
 
-        public BlogsController(BlogService blogService,
-                               CategoriesService categoriesService)
+        public BlogsController(IBlogsService blogService)
         {
             _blogService = blogService;
-            _categoriesService = categoriesService;
-        }   
-          
-        
+        }
+
+
         /// <summary>
-        /// Gets Blogs List
+        /// Depending on the search, the method that lists the blog
+        /// if the search is empty, all the blog data is listed.
         /// </summary>
         /// <param name="search"></param>
-        /// <returns></returns>
+        /// <returns>IEnumerable of slugs</returns>
+        /// <response code="200">If all requested items are found</response>
+        /// <response code="400">If slugs parameter is missing</response>       
         [HttpGet]
         [ProducesResponseType(typeof(List<BlogDto>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GetBlogsAll([FromQuery] string search)
+        public async Task<IActionResult> GetBlogsAll([FromQuery] string? search)
         {
             var response = await _blogService.GetAllBlogsAsync(search);
 
@@ -36,10 +38,12 @@ namespace Blog.API.Controllers
         }
 
         /// <summary>
-        /// Get Blog By Id
+        /// Method to fetch blog data to id.
         /// </summary>
-        /// <param name="search"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
+        /// <response code="200">If all requested items are found</response>
+        /// <response code="400">If slugs parameter is missing</response>       
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(BlogDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -51,11 +55,14 @@ namespace Blog.API.Controllers
         }
 
         /// <summary>
-        /// Insert Blog
+        /// The method that updates the blog data.
         /// </summary>
-        /// <param name="search"></param>
+        /// <param name="id"></param>
+        /// <param name="model"></param>
         /// <returns></returns>
-        [HttpGet("{id}")]
+        /// <response code="200">If all requested items are found</response>
+        /// <response code="400">If slugs parameter is missing</response>
+        [HttpPost("{id}")]
         [ProducesResponseType(typeof(BlogDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> UpdateBlog([FromRoute] int id, [FromBody]  BlogInsertDto model)
@@ -69,11 +76,13 @@ namespace Blog.API.Controllers
         }
 
         /// <summary>
-        /// Delete Blog
+        /// Method that deletes a blog based on the entered id.
         /// </summary>
-        /// <param name="search"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
-        [HttpGet("{id}")]
+        /// <response code="200">If all requested items are found</response>
+        /// <response code="400">If slugs parameter is missing</response>
+        [HttpDelete("{id}")]
         [ProducesResponseType(typeof(BlogDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> DeleteBlog([FromRoute] int id)
@@ -87,6 +96,24 @@ namespace Blog.API.Controllers
         }
 
 
+        /// <summary>
+        /// Blog Insert
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        /// <response code="200">If all requested items are found</response>
+        /// <response code="400">If slugs parameter is missing</response>
+        [HttpPost]
+        [ProducesResponseType(typeof(BlogDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> InsertBlog([FromBody] BlogInsertDto model)
+        {
+            if (model == null)
+                return BadRequest("Blog model can not be null!");
 
+            await _blogService.InsertBlogsAsync(model);
+
+            return Ok();
+        }
     }
 }

@@ -12,6 +12,7 @@ namespace Blog.DataAccess.Concrete
         {
             _connectionStrings = connectionStrings;
         }
+
         public DBEFContext(DbContextOptions<DBEFContext> options) : base(options) { }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

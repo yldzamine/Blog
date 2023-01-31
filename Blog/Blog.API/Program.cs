@@ -5,8 +5,8 @@ using Blog.Repository.Abstract;
 using Blog.Repository.Concrete;
 using Blogs.Service.Abstract;
 using Blogs.Service.Concrete;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
+using System.Reflection;
 
 namespace Blog.API
 {
@@ -22,14 +22,14 @@ namespace Blog.API
         public static void CreateHostBuilder(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
             var services = builder.Services;
 
-            services.AddDbContext<DBEFContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionStrings")));
+            ConnectionStrings connectionStrings = builder.Configuration.GetSection("ConnectionStrings").Get<ConnectionStrings>();
 
             // Add services to the container.
-            services.AddSingleton<ConnectionStrings>();
-            services.AddSingleton<DBEFContext>(/*s => new DBEFContext(connectionStrings)*/);
+            
+            services.AddSingleton<ConnectionStrings>(connectionStrings);
+            services.AddSingleton<DBEFContext>(s => new DBEFContext(connectionStrings));
 
             services.AddSingleton<IDBRepository, DBRepository>();
 
@@ -70,7 +70,12 @@ namespace Blog.API
                         Name = "Amine Open Licence"
                     }
                 });
-                
+
+
+                // Set the comments path for the Swagger JSON and UI.
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
             });
 
             var app = builder.Build();
@@ -85,42 +90,13 @@ namespace Blog.API
             app.UseAuthorization();
 
             app.MapControllers();
-
-            app.Run();
-        }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            app.UseRouting();
-
-            app.UseAuthorization();
-            app.UseAuthentication();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
-
-            app.UseCors();
-
             app.UseStaticFiles(new StaticFileOptions
             {
-                FileProvider = new PhysicalFileProvider(Path.Combine(env.ContentRootPath, "html_pages")),
+                FileProvider = new PhysicalFileProvider(Path.Combine(app.Environment.ContentRootPath, "html_pages")),
                 RequestPath = "/html"
             });
 
-            app.UseSwagger();
-
-            // This middleware serves the Swagger documentation UI
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Blogs API");
-            });
+            app.Run();
         }
     }
 }

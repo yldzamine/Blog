@@ -13,8 +13,7 @@ namespace Blog.Repository.Concrete
         private readonly IDBRepository _dbRrepository;
         private readonly DBEFContext _dBEFContext;
 
-        public BlogsRepository(IDBRepository dbRepository,
-                               DBEFContext dBEFContext)
+        public BlogsRepository(IDBRepository dbRepository, DBEFContext dBEFContext)
         {
             _dBEFContext = dBEFContext;
             _dbRrepository = dbRepository;  
@@ -81,7 +80,7 @@ namespace Blog.Repository.Concrete
 
         public async Task DeleteBlogsAsync(int id)
         {
-            string sql = "Delete From Blogs Where Id = @ Id";
+            string sql = "Delete From Blogs Where Id = @Id";
             DynamicParameters dynParameters = new DynamicParameters();
             dynParameters.Add("Id", id, DbType.Int32);  
 

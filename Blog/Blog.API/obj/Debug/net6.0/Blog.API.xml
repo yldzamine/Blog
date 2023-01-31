@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Blog.API</name>
+    </assembly>
+    <members>
+        <member name="M:Blog.API.Controllers.BlogsController.GetBlogsAll(System.String)">
+            <summary>
+            Depending on the search, the method that lists the blog
+            if the search is empty, all the blog data is listed.
+            </summary>
+            <param name="search"></param>
+            <returns>IEnumerable of slugs</returns>
+            <response code="200">If all requested items are found</response>
+            <response code="400">If slugs parameter is missing</response>       
+        </member>
+        <member name="M:Blog.API.Controllers.BlogsController.GetBlogById(System.Int32)">
+            <summary>
+            Method to fetch blog data to id.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+            <response code="200">If all requested items are found</response>
+            <response code="400">If slugs parameter is missing</response>       
+        </member>
+        <member name="M:Blog.API.Controllers.BlogsController.UpdateBlog(System.Int32,Blog.Entity.Dtos.BlogInsertDto)">
+            <summary>
+            The method that updates the blog data.
+            </summary>
+            <param name="id"></param>
+            <param name="model"></param>
+            <returns></returns>
+            <response code="200">If all requested items are found</response>
+            <response code="400">If slugs parameter is missing</response>
+        </member>
+        <member name="M:Blog.API.Controllers.BlogsController.DeleteBlog(System.Int32)">
+            <summary>
+            Method that deletes a blog based on the entered id.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+            <response code="200">If all requested items are found</response>
+            <response code="400">If slugs parameter is missing</response>
+        </member>
+        <member name="M:Blog.API.Controllers.BlogsController.InsertBlog(Blog.Entity.Dtos.BlogInsertDto)">
+            <summary>
+            Blog Insert
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+            <response code="200">If all requested items are found</response>
+            <response code="400">If slugs parameter is missing</response>
+        </member>
+    </members>
+</doc>
