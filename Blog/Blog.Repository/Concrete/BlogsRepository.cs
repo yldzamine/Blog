@@ -22,7 +22,7 @@ namespace Blog.Repository.Concrete
 
         public async Task<List<Blogs>> GetAllBlogsAsync(string title)
         {
-            string sql = "Select * from Blogs b INNER JOIN Category c ON b.Category = c.Id";
+            string sql = "Select * from Blogs";
             DynamicParameters dynamicParameters = new DynamicParameters();  
             if(!string.IsNullOrEmpty(title))
             {
